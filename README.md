@@ -27,15 +27,17 @@
 
 ![image](./assets/6.PNG)
 
-# Download Custom Flink Libs Jar
-- **SSH into Primary Node**
-    - MUST update **PUBLIC_NODES_DNS** below
-```bash
-ssh -i ./keys/poc_emr_flink.pem hadoop@<PUBLIC_NODES_DNS>
-```
+# SSH to Primary Node
+- **Check Primary Node endpoint**
 
 ![image](./assets/7.PNG)
 
+- **Update `.env` for `AWS_EMR_PRIMARY_NODE`**
+```bash
+./cli/ssh_primary_node.sh
+```
+
+# Download Custom Flink Libs Jar
 - **Download Flink Libs Jar**
 ```bash
 # jars folder
