@@ -40,39 +40,38 @@
 # Download Custom Flink Libs Jar
 - **Download Flink Libs Jar**
 ```bash
-# jars folder
-mkdir -p ~/flink_jars/kafka 
-mkdir -p ~/flink_jars/iceberg
+sudo wget -P /usr/lib/flink/lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.3.0-1.20/flink-sql-connector-kafka-3.3.0-1.20.jar
 
-# download
-wget -P ~/flink_jars/kafka/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.2.0-1.19/flink-sql-connector-kafka-3.2.0-1.19.jar
+sudo wget -P /usr/lib/flink/lib/ https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-flink-runtime-1.20/1.7.1/iceberg-flink-runtime-1.20-1.7.1.jar
 
-wget -P ~/flink_jars/iceberg/ https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-flink-runtime-1.18/1.5.0/iceberg-flink-runtime-1.18-1.5.0.jar
+sudo wget -P /usr/lib/flink/lib/ https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-aws-bundle/1.7.1/iceberg-aws-bundle-1.7.1.jar
 ```
 
 # Create Flink Job
 
 - **Start Flink session**
 ```bash
-flink-yarn-session -d \        
-    -nm "iceberg_order" \                   # session name      
-    -tm 4096 \                              # 4GB RAM per Worker
-    -s 2 \                                  # allows 2 parallel tasks per node
-    -t /home/hadoop/flink_jars/kafka/ \   
-    -t /home/hadoop/flink_jars/iceberg/   
+flink-yarn-session -d \
+    -nm "session_iceberg" \                         # name
+    -yD yarn.application.name="session_iceberg" \   # name
+    -tm 4096 \                                      # RAM per Worker
+    -s 2 \                                          # parallel tasks per node
 ```
 
 - **Check Flink session list**
 ```bash
-yarn application -list
-```
-
-- **Reconnect Flink session**
-```bash
-flink-sql-client.sh embedded -yid <APPLICATION_ID>
+./cli/list_flink_session.sh
 ```
 
 - **Delete Flink session**
 ```bash
 yarn application -kill <APPLICATION_ID>
 ```
+
+- **Flink-SQL-Client with specific Flink session**
+```bash
+./cli/flink_sql_client.sh <SESSION_NAME>
+```
+
+- **Create job**
+- **Flink dashboard**

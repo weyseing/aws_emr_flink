@@ -1,0 +1,3 @@
+USE CATALOG glue_catalog;
+
+CREATE DATABASE IF NOT EXISTS glue_db;
