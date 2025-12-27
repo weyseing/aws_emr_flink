@@ -56,12 +56,11 @@ sudo wget -P /usr/lib/flink/lib/ https://repo1.maven.org/maven2/org/apache/icebe
 # Create Flink Job
 
 - **Start Flink session**
+    - `nm` - name
+    - `taskmanager.memory.process.size` - total memory for 1 task manager
+    - `taskmanager.numberOfTaskSlots` - number of worker
 ```bash
-flink-yarn-session -d \
-    -nm "session_iceberg" \                         # name
-    -yD yarn.application.name="session_iceberg" \   # name
-    -tm 4096 \                                      # RAM per Worker
-    -s 2 \                                          # parallel tasks per node
+flink-yarn-session -d -nm "session_iceberg" -D taskmanager.memory.process.size=4096m -D taskmanager.numberOfTaskSlots=4
 ```
 
 - **Check Flink session list**
