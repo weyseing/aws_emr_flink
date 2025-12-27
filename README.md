@@ -37,6 +37,12 @@
 ./cli/ssh_primary_node.sh
 ```
 
+# Set Iceberg S3 Path
+- **Set values below in `.env`**
+```properties
+ICEBERG_S3_BUCKET=<S3_BUCKET_NAME>
+```
+
 # Download Custom Flink Libs Jar
 - **Download Flink Libs Jar**
 ```bash
@@ -73,5 +79,9 @@ yarn application -kill <APPLICATION_ID>
 ./cli/flink_sql_client.sh <SESSION_NAME>
 ```
 
-- **Create job**
 - **Flink dashboard**
+```bash
+./cli/flink_dashboard.sh <FLINK_SESSION_NAME>
+```
+
+- **Create job via Flink-SQL in `/flink_sql`**

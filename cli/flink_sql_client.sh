@@ -15,4 +15,4 @@ if [ -z "$ID" ]; then
 fi
 
 # flink sql client
-flink-sql-client embedded -yid $ID
+flink-sql-client embedded -Dexecution.target=yarn-session -Dyarn.application.id="$ID"

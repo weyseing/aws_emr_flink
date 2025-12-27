@@ -13,7 +13,7 @@ CREATE TABLE source_table (
 ) WITH (
   'connector' = 'upsert-kafka',
   'topic' = 'stream_order_intake',
-  'properties.bootstrap.servers' = '0.tcp.ap.ngrok.io:17341',
+  'properties.bootstrap.servers' = '0.tcp.ap.ngrok.io:11150',
   'key.format' = 'json',
   'value.format' = 'json'
 );
